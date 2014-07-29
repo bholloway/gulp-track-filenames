@@ -16,6 +16,7 @@ The following is an overly simplistic example. Typically you would use the `repl
 similar.
 
 ```
+  var gulp = require('gulp');
   var tracking = require('gulp-track-filenames')();
   
   gulp.task('copy', function() {

@@ -4,7 +4,7 @@ var minimatch = require('minimatch');
 
 /**
  * Create an instance.
- * @returns {{create: create, replace: replace}}
+ * @returns {{create: function, replace: function}}
  */
 module.exports = function() {
   'use strict';
@@ -14,7 +14,7 @@ module.exports = function() {
     /**
      * Create an session that is separated from others.
      * This is important to ensure that order is preserved when associating `before` with `after`.
-     * @returns {{before: function, after: function, replace: replace}}
+     * @returns {{before: function, after: function, replace: function}}
      */
     create: function() {
       var before  = [ ];

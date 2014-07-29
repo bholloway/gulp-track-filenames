@@ -43,21 +43,17 @@ shown.
 
 Create an instance.
 
+@returns `{{create: function, replace: function}}`
+
 ### `.create()`
 
 Create an session that is separated from others.
 
 This is important to ensure that order is preserved when associating `before` with `after`.
 
-### `.replace(text)`
+@returns `{{before: function, after: function, replace: function}}`
 
-Replace occurrences of `after` file names with the corresponding `before` file names across all session.
-
-@param `{string} text` The input text to replace.
-
-@returns `{string}` The result of the replacement.
-
-### `.create().before()`
+#### `.before()`
 
 Note file names from the input stream as those `before` transformation.
 
@@ -65,7 +61,7 @@ Outputs a stream of the same files.
 
 @returns `{stream.Through}` A through stream that performs the operation of a gulp stream.
 
-### `.create().after()`
+#### `.after()`
 
 Note file names from the input stream as those after transformation.
 
@@ -75,9 +71,17 @@ Outputs a stream of the same files.
 
 @returns `{stream.Through}` A through stream that performs the operation of a gulp stream.
 
-### `.create().replace(text)`
+#### `.replace(text)`
 
 Replace occurrences of `after` file names with the corresponding `before` file names for only the current session.
+
+@param `{string} text` The input text to replace.
+
+@returns `{string}` The result of the replacement.
+
+### `.replace(text)`
+
+Replace occurrences of `after` file names with the corresponding `before` file names across all session.
 
 @param `{string} text` The input text to replace.
 

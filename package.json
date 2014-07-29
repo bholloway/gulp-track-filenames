@@ -1,0 +1,29 @@
+{
+  "name": "gulp-track-filenames",
+  "version": "0.0.1",
+  "description": "Capture file names before and after transform steps so as to be able to reinstate pre-transform text.",
+  "keywords": [
+    "gulpplugin",
+    "track",
+    "sources",
+    "filenames",
+    "replace",
+    "reinstate",
+    "transform"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bholloway/gulp-track-filenames"
+  },
+  "author": "Ben Holloway",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bholloway/gulp-track-filenames/issues"
+  },
+  "homepage": "https://github.com/bholloway/gulp-track-filenames",
+  "main": "index.js",
+  "dependencies": {
+    "through2": "~0.5.1",
+    "minimatch": "~0.4.0"
+  }
+}

@@ -6,7 +6,7 @@ var minimatch = require('minimatch');
  * Create an instance.
  * @returns {{create: create, replace: replace}}
  */
-modules.exports = function() {
+module.exports = function() {
   'use strict';
   var sessions = [ ];
   return {

@@ -72,7 +72,7 @@ Outputs a stream of the same files.
 
 @returns `{stream.Through}` A through stream that performs the operation of a gulp stream.
 
-### `.define(before, after)`
+#### `.define(before, after)`
 
 Define an explicit filename transformation.
 

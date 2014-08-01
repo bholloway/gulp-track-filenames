@@ -56,7 +56,7 @@ This is important to ensure that order is preserved when associating `before` wi
 
 #### `.before()`
 
-Note file names from the input stream as those `before` transformation.
+Consider file names from the input stream as those `before` transformation.
 
 Outputs a stream of the same files.
 
@@ -64,13 +64,23 @@ Outputs a stream of the same files.
 
 #### `.after()`
 
-Note file names from the input stream as those after transformation.
+Consider file names from the input stream as those after transformation.
 
 Order must be preserved so as to correctly match the corresponding before files.
 
 Outputs a stream of the same files.
 
 @returns `{stream.Through}` A through stream that performs the operation of a gulp stream.
+
+### `.define(before, after)`
+
+Define an explicit filename transformation.
+
+@param `{string} before` The filename before transformation
+
+@param `{string} after` The filename after transformation
+         
+@returns The current session on which the method was called
 
 #### `.replace(text)`
 

@@ -17,38 +17,58 @@ module.exports = function() {
      * @returns {{before: function, after: function, replace: function}}
      */
     create: function() {
-      var before  = [ ];
-      var after   = [ ];
+      var before = [ ];
+      var after  = [ ];
+      function addBefore(value) {
+        before.push(path.resolve(value));  // enforce correct path format for the platform
+      }
+      function addAfter(value) {
+        var source = minimatch.makeRe(value).source
+          .replace(/^\^|\$$/g, '')        // match text anywhere on the line by removing line start/end
+          .replace(/\\\//g, '[\\\\\\/]'); // detect any platform path format
+        after.push(source);
+      }
       var session = {
 
         /**
-         * Note file names from the input stream as those before transformation.
+         * Consider file names from the input stream as those before transformation.
          * Outputs a stream of the same files.
          * @returns {stream.Through} A through stream that performs the operation of a gulp stream
          */
         before: function() {
           return through.obj(function(file, encode, done){
-            before.push(path.resolve(file.path));  // enforce correct path format for the platform
+            addBefore(file.path);
             this.push(file);
             done();
           });
         },
 
         /**
-         * Note file names from the input stream as those after transformation.
+         * Consider file names from the input stream as those after transformation.
          * Order must be preserved so as to correctly match the corresponding before files.
          * Outputs a stream of the same files.
          * @returns {stream.Through} A through stream that performs the operation of a gulp stream
          */
         after: function() {
           return through.obj(function(file, encode, done){
-            var source = minimatch.makeRe(file.path).source
-              .replace(/^\^|\$$/g, '')        // match text anywhere on the line by removing line start/end
-              .replace(/\\\//g, '[\\\\\\/]'); // detect any platform path format
-            after.push(source);
+            addAfter(file.path);
             this.push(file);
             done();
           });
+        },
+
+        /**
+         * Define an explicit filename transformation.
+         * @param {string} before The filename before transformation
+         * @param {string} after The filename after transformation
+         * @returns The session on which the method was called
+         */
+        define: function(before, after) {
+          if ((typeof before === 'string') && (typeof after === 'string')) {
+            addBefore(before);
+            addAfter(after);
+          }
+          return session;
         },
 
         /**

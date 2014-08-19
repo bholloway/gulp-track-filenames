@@ -75,11 +75,14 @@ module.exports = function() {
          * Replace occurrences of <code>after</code> file names with the corresponding <code>before</code> file names
          * for only the current session.
          * @param {string} text The input text to replace
+         * @param {string=} prefix Regexp source that should precede all matches
+         * @param {string=} suffix Regexp source that should follow all matches
          * @returns {string} The result of the replacement
          */
-        replace: function(text) {
+        replace: function(text, prefix, suffix) {
           for (var i = Math.min(before.length, after.length) - 1; i >= 0; i--) {
-          var regexp = new RegExp(after[i], 'gm');
+          var source = (prefix || '') + after[i] + (suffix || '');
+          var regexp = new RegExp(source, 'gm');
             text = text.replace(regexp, before[i]);
           }
           return text;
@@ -93,11 +96,13 @@ module.exports = function() {
      * Replace occurrences of <code>after</code> file names with the corresponding <code>before</code> file names
      * across all sessions.
      * @param {string} text The input text to replace
+     * @param {string=} prefix Regexp source that should precede all matches
+     * @param {string=} suffix Regexp source that should follow all matches
      * @returns {string} The result of the replacement
      */
-	  replace: function(text) {
+	  replace: function(text, prefix, suffix) {
       sessions.forEach(function(session) {
-	      text = session.replace(text);
+	      text = session.replace(text, prefix, suffix);
       });
       return text;
     }

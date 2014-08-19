@@ -81,9 +81,9 @@ module.exports = function() {
          */
         replace: function(text, prefix, suffix) {
           for (var i = Math.min(before.length, after.length) - 1; i >= 0; i--) {
-          var source = (prefix || '') + after[i] + (suffix || '');
-          var regexp = new RegExp(source, 'gm');
-            text = text.replace(regexp, before[i]);
+            var source = (prefix || '') + after[i] + (suffix || '');
+            var regexp = new RegExp(source, 'gm');
+            text = String(text).replace(regexp, before[i]);
           }
           return text;
         }

@@ -1,6 +1,6 @@
 {
   "name": "gulp-track-filenames",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Capture file names before and after transform steps so as to be able to reinstate pre-transform text.",
   "keywords": [
     "gulpplugin",

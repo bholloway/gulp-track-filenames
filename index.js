@@ -20,7 +20,7 @@ module.exports = function() {
       var before = [ ];
       var after  = [ ];
       function addBefore(value) {
-        before.push(path.resolve(value));  // enforce correct path format for the platform
+        before.push(path.normalize(value));  // enforce correct path format for the platform
       }
       function addAfter(value) {
         var source = minimatch.makeRe(value).source

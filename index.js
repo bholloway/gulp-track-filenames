@@ -24,8 +24,8 @@ module.exports = function() {
       }
       function addAfter(value) {
         var source = minimatch.makeRe(value).source
-          .replace(/^\^|\$$/g, '')        // match text anywhere on the line by removing line start/end
-          .replace(/\\\//g, '[\\\\\\/]'); // detect any platform path format
+          .replace(/^\^|\$$/g, '')                // match text anywhere on the line by removing line start/end
+          .replace(/\\\//g, '(?:\\\\{1,2}|\\/)'); // detect any platform path format / => / or \ or \\ (i.e. strings)
         after.push(source);
       }
       var session = {
